@@ -7,7 +7,7 @@ class TravelingSalesmanProblem {
   int elite_length;
   int np1, np2;
   int cities_length = cities_count;
-  PVector map_range = new PVector(1000,1000);
+  PVector map_range = new PVector(1000,1000, 1000);
   PVector[] cities = new PVector[cities_length];
   int road_length = calcBit(cities_length);
   Road[] roads = new Road[road_length];
@@ -36,7 +36,7 @@ class TravelingSalesmanProblem {
   
   void setCitiesPosition(){
     for(int i=0;i<cities_length;i++)
-      cities[i] = new PVector(int(random(map_range.x)),int(random(map_range.y)));
+      cities[i] = new PVector(int(random(map_range.x)),int(random(map_range.y)), int(random(map_range.z)));
   }
   
   int calcBit(int n){
@@ -108,10 +108,19 @@ class TravelingSalesmanProblem {
         }
         */
         
-        line(genes[0].roads[i].city_a.x,genes[0].roads[i].city_a.y,genes[0].roads[i].city_b.x,genes[0].roads[i].city_b.y);
+        //line(genes[0].roads[i].city_a.x, genes[0].roads[i].city_a.y, genes[0].roads[i].city_b.x, genes[0].roads[i].city_b.y );
+         stroke(100);
+        line(genes[0].roads[i].city_a.x, genes[0].roads[i].city_a.y, genes[0].roads[i].city_a.z, 
+             genes[0].roads[i].city_b.x, genes[0].roads[i].city_b.y, genes[0].roads[i].city_b.z);
         //line(genes[generation_length-1].roads[i].city_a.x,genes[generation_length-1].roads[i].city_a.y,genes[generation_length-1].roads[i].city_b.x,genes[generation_length-1].roads[i].city_b.y);
         
-        ellipse(genes[0].roads[i].city_a.x, genes[0].roads[i].city_a.y, 10,10);
+        pushMatrix();
+        translate(genes[0].roads[i].city_a.x, genes[0].roads[i].city_a.y, genes[0].roads[i].city_a.z);
+        noFill();
+        stroke(255);
+        sphere(4);
+        popMatrix();
+        //ellipse(genes[0].roads[i].city_a.x, genes[0].roads[i].city_a.y, 10,10);
       }
       text("generation : "+str(generation_count) ,10,10);
   }

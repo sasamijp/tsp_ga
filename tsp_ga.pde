@@ -28,7 +28,7 @@ void setup(){
   frameRate(30);
   
   
-  size(1000,1000);
+  size(1000,1000, P3D);
   
   //size(int(tsp.map_range.x), int(tsp.map_range.y));
   //size(int(tsp.map_range.x)*6, int(tsp.map_range.y)*5);
@@ -38,9 +38,12 @@ void setup(){
 }
 
 void draw(){
-  background(255);
+  background(0);
   stroke(100);
   tsp.draw();
+  translate(width/2, height/2, 1000);
+  camera(width/2+ (mouseX-500)*10 + 1000, height/2 + (mouseY-500)*10 + 1000 , 0, width/2, height/2, width/2, 0, 1, 0);
+  
   //for(int i=0;i<tsp.road_length;i++){
     //line(tsp.roads[i].city_a.x,tsp.roads[i].city_a.y,tsp.roads[i].city_b.x,tsp.roads[i].city_b.y);
       //line(tsp.roads[i][0].x,tsp.roads[i][0].y,tsp.roads[i][1].x,tsp.roads[i][1].y);
